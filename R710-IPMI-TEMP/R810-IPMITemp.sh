@@ -13,7 +13,7 @@
 # IPMI SETTINGS:
 # Modify to suit your needs.
 # DEFAULT IP: 192.168.0.120
-IPMIHOST=10.0.100.20
+IPMIHOST=192.168.1.121
 IPMIUSER=root
 IPMIPW=calvin
 IPMIEK=0000000000000000000000000000000000000000
@@ -30,12 +30,12 @@ TEMP=$(ipmitool -I lanplus -H $IPMIHOST -U $IPMIUSER -P $IPMIPW -y $IPMIEK sdr t
 
 if [[ $TEMP > $MAXTEMP ]];
   then
-    printf "Warning: Temperature is too high! Activating dynamic fan control! ($TEMP C)" | systemd-cat -t R710-IPMI-TEMP
-    echo "Warning: Temperature is too high! Activating dynamic fan control! ($TEMP C)" | /usr/bin/slacktee.sh -t "R710-IPMI-TEMP [$(hostname)]"
+    printf "Warning: Temperature is too high! Activating dynamic fan control! ($TEMP C)" | systemd-cat -t R810-IPMI-TEMP
+    echo "Warning: Temperature is too high! Activating dynamic fan control! ($TEMP C)" | /usr/bin/slacktee.sh -t "R810-IPMI-TEMP [$(hostname)]"
     ipmitool -I lanplus -H $IPMIHOST -U $IPMIUSER -P $IPMIPW -y $IPMIEK raw 0x30 0x30 0x01 0x01
   else
     # healthchecks.io
-    curl -fsS --retry 3 https://hchk.io/XXX >/dev/null 2>&1
-    printf "Temperature is OK ($TEMP C)" | systemd-cat -t R710-IPMI-TEMP
-    echo "Temperature is OK ($TEMP C)"
+    #curl -fsS --retry 3 https://hchk.io/XXX >/dev/null 2>&1
+    printf "Temperature is OK ($TEMP C)" | systemd-cat -t R810-IPMI-TEMP
+    echo "Temperature is OK ($TEMP C)" | /usr/bin/slacktee.sh -t "R810-IPMI-TEMP [$(hostname)]"
 fi
