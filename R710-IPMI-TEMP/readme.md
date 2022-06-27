@@ -1,16 +1,13 @@
 # Safety BASH script
 I made a BASH script to check the temperature, and if it's higher than XX (27 degrees C in my case) it sends a raw command to restore automatic fan control. 
 
-I'm running this on an Ubuntu VM on ESXi (on the R710 box), but it should be able to run as long as you have ipmitools. It could be you need to modify the logging, to make it work with whatever your system use.
+I'm running this on an Ubuntu (on the R810 box), but it should be able to run as long as you have ipmitools. It could be you need to modify the logging, to make it work with whatever your system use.
 
-I run the script via CRON every 5 minutes from my Ubuntu Server VM running on ESXi.
+I run the script via CRON every 5 minutes from my Ubuntu Server
 
-`*/5 * * * * /bin/bash /path/to/script/R710-IPMITemp.sh > /dev/null 2>&1`
-
-Notice that I use [healthchecks.io](https://healthchecks.io) in the script to notify if the temp goes to high (it would also trigger if the internet goes down for some reason). Remember to get your own check URL if you want it, or else just remove the curl command.
+`*/5 * * * * /bin/bash /path/to/script/R810-IPMITemp.sh > /dev/null 2>&1`
 
 I'm also currently testing out [slacktee.sh](https://github.com/course-hero/slacktee) to get notifications in my slack channel.
-
 
 The Scripts [Reddit thread](https://www.reddit.com/r/homelab/comments/779cha/manual_fan_control_on_r610r710_including_script/)
 
@@ -21,7 +18,7 @@ If you want a more advanced Perl script with more functionality, check out [@spa
 
 *****
 
-# Howto: Setting the fan speed of the Dell R610/R710
+# Howto: Setting the fan speed of the Dell R610/R710/R810
 
 1. Enable IPMI in iDrac
 2. Install ipmitool on linux, win or mac os
