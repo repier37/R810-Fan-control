@@ -22,11 +22,14 @@ IPMIEK=0000000000000000000000000000000000000000
 # Change this to the temperature in celcius you are comfortable with.
 # If the temperature goes above the set degrees it will send raw IPMI command to enable dynamic fan control
 MAXTEMP=75
-# If the temperature is above mid temp, fan will be set to mid speed value
+# The cpu temperatur corresponding to lowest fan speed
 LOWTEMP=40
+# Fan speed in percent to use when cpu is at MAXTEMP
 MAXSPEEDPERC=100
+# Fan speed to user in percent when CPU temp is at LOWTEMP
 MINSPEEDPERCENT=10
 
+# Compute the fan ramp 
 DELTAY=$((MAXSPEEDPERC-MINSPEEDPERCENT))
 FANRAMP=$((MAXTEMP-LOWTEMP))
 FANRAMP=$((DELTAY/FANRAMP))
