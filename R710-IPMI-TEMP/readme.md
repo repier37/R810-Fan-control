@@ -3,9 +3,9 @@ I made a BASH script to check the temperature, and if it's higher than XX (27 de
 
 I'm running this on an Ubuntu (on the R810 box), but it should be able to run as long as you have ipmitools. It could be you need to modify the logging, to make it work with whatever your system use.
 
-I run the script via CRON every 5 minutes from my Ubuntu Server
+I run the script via CRON every minute from my Ubuntu Server
 
-`*/5 * * * * /bin/bash /path/to/script/R810-IPMITemp.sh > /dev/null 2>&1`
+`*/1 * * * * /bin/bash /path/to/script/R810-IPMITemp.sh > /dev/null 2>&1`
 
 I'm also currently testing out [slacktee.sh](https://github.com/course-hero/slacktee) to get notifications in my slack channel.
 
@@ -41,8 +41,9 @@ If you want a more advanced Perl script with more functionality, check out [@spa
 
 *1560 RPM*: `raw 0x30 0x30 0x02 0xff 0x09`
 
-_Note: The RPM may differ from model to model_
+The last value correspond to the desired fans speed percent in hexa (100% = 0x64)
 
+_Note: The RPM may differ from model to model_
 
 **Disable / Return to automatic fan control:**
 
