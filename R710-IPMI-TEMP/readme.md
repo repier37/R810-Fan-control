@@ -5,6 +5,7 @@ The fan speed and ramps can be adjusted in the script using the
 You can check acceptable CPU temp by running the following command in a shell:
 $: sensors
 Wich will give you an output like this
+
 Core 0:       +53.0°C  (high = +83.0°C, crit = +91.0°C)
 Core 1:       +53.0°C  (high = +83.0°C, crit = +91.0°C)
 Core 2:       +53.0°C  (high = +83.0°C, crit = +91.0°C)
