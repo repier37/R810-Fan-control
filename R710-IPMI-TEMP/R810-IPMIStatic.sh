@@ -11,13 +11,13 @@
 
 # IPMI SETTINGS:
 # Modify to suit your needs.
-# DEFAULT IP: 192.168.1.120
-IPMIHOST=192.168.1.121
+# DEFAULT IP: 192.168.0.120
+IPMIHOST=192.168.0.121
 IPMIUSER=root
 IPMIPW=calvin
 IPMIEK=0000000000000000000000000000000000000000
 
 printf "Activating manual fan speeds! (2160 RPM)" | systemd-cat -t R810-IPMI-TEMP
-echo "Activating manual fan speeds! (2160 RPM)" | slacktee.sh -t "R810-IPMI-TEMP [$(hostname)]"
+echo "Activating manual fan speeds! (2160 RPM)" | /usr/local/bin/slacktee.sh -t "R810-IPMI-TEMP [$(hostname)]"
 ipmitool -I lanplus -H $IPMIHOST -U $IPMIUSER -P $IPMIPW -y $IPMIEK raw 0x30 0x30 0x01 0x00
 ipmitool -I lanplus -H $IPMIHOST -U $IPMIUSER -P $IPMIPW -y $IPMIEK raw 0x30 0x30 0x02 0xff 0x09
