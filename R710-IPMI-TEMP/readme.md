@@ -1,7 +1,25 @@
 # Safety BASH script
-I made a BASH script to check the temperature, and if it's higher than XX (27 degrees C in my case) it sends a raw command to restore automatic fan control. 
+I made a BASH script to check the CPU temperatures. It adjust the fan speed to the CPU temperatures. And if it's higher than XX (75 degrees C in my case). it sends a raw command to restore automatic fan control. 
+The fan speed and ramps can be adjusted in the script using the 
 
-I'm running this on an Ubuntu (on the R810 box), but it should be able to run as long as you have ipmitools. It could be you need to modify the logging, to make it work with whatever your system use.
+You can check acceptable CPU temp by running the following command in a shell:
+$: sensors
+Wich will give you an output like this
+Core 0:       +53.0°C  (high = +83.0°C, crit = +91.0°C)
+Core 1:       +53.0°C  (high = +83.0°C, crit = +91.0°C)
+Core 2:       +53.0°C  (high = +83.0°C, crit = +91.0°C)
+Core 3:       +54.0°C  (high = +83.0°C, crit = +91.0°C)
+Core 8:       +54.0°C  (high = +83.0°C, crit = +91.0°C)
+Core 9:       +53.0°C  (high = +83.0°C, crit = +91.0°C)
+Core 10:      +51.0°C  (high = +83.0°C, crit = +91.0°C)
+Core 11:      +50.0°C  (high = +83.0°C, crit = +91.0°C)
+
+Before runing this script you might need to edit the following variables:
+- MAXTEMP : Check your CPU acceptable temperatures and adjust accordingly, I set mine to the high value minus 8 degrees
+- TEMP0 and TEMP8 : These variables get the core 0 and core 8 temperature check your CPU Cores numbers and replace their names in the script (TEMP0 and TEMP8 variables);
+- Check your IDRAC credentials and IP
+
+I'm running this on an Ubuntu (on the R810), but it should be able to run as long as you have ipmitools. It could be you need to modify the logging, to make it work with whatever your system use.
 
 I run the script via CRON every minute from my Ubuntu Server
 
