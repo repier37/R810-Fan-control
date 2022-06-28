@@ -229,6 +229,7 @@ while () {
   # FIXME: hysteresis
   if ($ambient_temp > $default_threshold) {
     print "fallback because of high ambient temperature $ambient_temp > $default_threshold\n";
+    }
 	
   chomp @cputemps;
   chomp @coretemps;
